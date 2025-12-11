@@ -1,0 +1,204 @@
+/* ===== PRUEBA: que sepamos que el CSS se aplica ===== */
+body {
+    margin: 0;
+    background: #f0f0ff;
+}
+
+/* CONTENEDOR DE TARJETAS */
+#contenedorTarjetas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    padding: 20px;
+
+}
+
+/* CADA TARJETA */
+.tarjeta-monstermet {
+    width: 200px;
+    /* 👈 ancho fijo */
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    border: 3px solid blue;
+    /* 👈 borde azul para ver cada tarjeta */
+}
+
+/* RADIO */
+.tarjeta-monstermet input[type="radio"] {
+    align-self: flex-end;
+    margin-bottom: 4px;
+}
+
+/* IMAGEN DE LA TARJETA */
+.tarjeta-monstermet img {
+    width: 100%;
+    height: 140px;
+    /* 👈 altura controlada */
+    object-fit: cover;
+    /* recorta sin deformar */
+    border-radius: 10px;
+    border: 2px solid green;
+    /* 👈 borde verde para ver el tamaño real */
+}
+
+/* NOMBRE */
+.tarjeta-monstermet p {
+    margin: 6px 0 0;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* CONTENEDOR DE TARJETAS */
+#contenedorTarjetas {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 16px !important;
+    max-width: 900px !important;
+    margin: 0 auto 20px !important;
+    padding: 20px !important;
+    box-sizing: border-box !important;
+    border: 3px dashed purple;
+    /* solo para ver el contenedor */
+}
+
+/* CADA TARJETA */
+#contenedorTarjetas .tarjeta-monstermet {
+    box-sizing: border-box !important;
+    width: 200px !important;
+    /* 👈 ancho fijo */
+    background: #ffffff !important;
+    border-radius: 16px !important;
+    padding: 8px !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    overflow: hidden !important;
+    border: 3px solid blue;
+    /* para ver cada tarjeta */
+}
+
+/* IMAGEN DENTRO DE LA TARJETA */
+#contenedorTarjetas .tarjeta-monstermet img {
+    display: block !important;
+    width: 100% !important;
+    /* ocupa los 200px de la tarjeta */
+    height: 140px !important;
+    /* 👈 altura controlada */
+    object-fit: cover !important;
+    /* recorta sin deformar */
+    border-radius: 10px !important;
+    border: 2px solid green;
+    /* para ver el tamaño real */
+}
+
+/* NOMBRE */
+#contenedorTarjetas .tarjeta-monstermet p {
+    margin: 6px 0 0 !important;
+    font-weight: 600 !important;
+    text-align: center !important;
+}
+
+/* TODAS las imágenes de la sección seleccionar-mascota */
+#seleccionar-mascota img {
+    display: block !important;
+    width: 200px !important;
+    height: 140px !important;
+    object-fit: cover !important;
+    border-radius: 10px;
+}
+
+/* ============================
+   🎮 Selección de Monstermet
+   ============================ */
+
+/* Contenedor completo de la sección */
+#seleccionar-mascota {
+    padding: 20px 0;
+    text-align: center;
+}
+
+#seleccionar-mascota h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: #333;
+}
+
+
+/* 📦 GRID de tarjetas */
+#contenedorTarjetas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 24px;
+    padding: 0 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+
+/* 🎴 Tarjeta de monstruito */
+.tarjeta-monstermet {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+    transition: transform 0.25s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animación al pasar el mouse */
+.tarjeta-monstermet:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+}
+
+
+/* 🔘 Input radio oculto */
+.tarjeta-monstermet input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ⭐ Estilo cuando una tarjeta está seleccionada */
+.tarjeta-monstermet input[type="radio"]:checked+img {
+    outline: 4px solid #4a90e2;
+    outline-offset: 2px;
+    border-radius: 12px;
+}
+
+
+/* 🖼️ Imagen del monito */
+.tarjeta-monstermet img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 14px;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.tarjeta-monstermet:hover img {
+    transform: scale(1.05);
+}
+
+
+/* 📝 Nombre del monito */
+.tarjeta-monstermet p {
+    font-size: 18px;
+    font-weight: 600;
+    color: #444;
+    margin-top: 10px;
+}

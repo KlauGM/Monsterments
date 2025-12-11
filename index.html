@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <link rel="stylesheet" href="./style.css" />
+    <meta charset="UTF-8" />
+    <title>Monstergame</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background-image: url("/imagenes/Monstermap.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        /* OCULTAR SECCIONES POR DEFECTO */
+        #seleccionar-ataque,
+        #ver-mapa,
+        #Reiniciar {
+            display: none;
+        }
+
+        /* SECCIÓN SELECCIONAR MASCOTA */
+        #seleccionar-mascota {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 20px auto;
+            max-width: 1000px;
+        }
+
+        #seleccionar-mascota h2 {
+            text-align: center;
+            margin-top: 0;
+            color: #333;
+        }
+
+        /* CONTENEDOR DE TARJETAS */
+        #contenedorTarjetas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        /* OJO: la clase en HTML es .tarjeta-monstermet, la uso aquí */
+        .tarjeta-monstermet {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 2px solid #aaa;
+            border-radius: 12px;
+            padding: 10px;
+            cursor: pointer;
+            transition: 0.2s ease;
+            background: white;
+        }
+
+        .tarjeta-monstermet:hover {
+            transform: scale(1.03);
+            border-color: #4b8bff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .tarjeta-monstermet img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .tarjeta-monstermet p {
+            margin: 8px 0 0;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* BOTONES */
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: 0.2s;
+        }
+
+        #boton-mascota {
+            background: #4b8bff;
+            color: white;
+            font-weight: bold;
+        }
+
+        #boton-mascota:hover {
+            background: #3a7ae0;
+        }
+
+        #boton-Reiniciar {
+            background: #ff4b4b;
+            color: white;
+        }
+
+        #boton-Reiniciar:hover {
+            background: #e03a3a;
+        }
+
+        /* SECCIÓN DE ATAQUE */
+        #seleccionar-ataque {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 20px;
+            margin: 20px auto;
+            max-width: 900px;
+        }
+
+        #contenedorAtaques {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .boton-de-ataque {
+            font-size: 32px;
+            padding: 15px 20px;
+            border: 3px solid #333;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+            background: white;
+        }
+
+        .boton-de-ataque:hover:not(:disabled) {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .boton-de-ataque:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .area-ataques {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .area-ataques h4 {
+            text-align: center;
+            margin-top: 0;
+        }
+
+        #ataques-del-jugador,
+        #ataques-del-enemigo {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            min-height: 100px;
+        }
+
+        #resultado {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #4b8bff;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+        }
+
+        /* MAPA */
+        #ver-mapa {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        #mapa {
+            border: 4px solid #333;
+            border-radius: 10px;
+            background: white;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- SECCIÓN 1: SELECCIONAR MASCOTA -->
+    <section id="seleccionar-mascota">
+        <h2>🎮 Selecciona tu Monstermet</h2>
+
+        <div id="contenedorTarjetas">
+            <label class="tarjeta-monstermet">
+                <input type="radio" name="monstermet" id="watty" />
+                <img src="./imagenes/Watty.jpg" alt="Watty" />
+                <p>Watty</p>
+            </label>
+
+            <label class="tarjeta-monstermet">
+                <input type="radio" name="monstermet" id="windy" />
+                <img src="./imagenes/Windy.jpg" alt="Windy" />
+                <p>Windy</p>
+            </label>
+
+            <label class="tarjeta-monstermet">
+                <input type="radio" name="monstermet" id="dirty" />
+                <img src="./imagenes/Dirty.jpg" alt="Dirty" />
+                <p>Dirty</p>
+            </label>
+
+            <label class="tarjeta-monstermet">
+                <input type="radio" name="monstermet" id="smokey" />
+                <img src="./imagenes/Smokey.jpg" alt="Smokey" />
+                <p>Smokey</p>
+            </label>
+
+            <label class="tarjeta-monstermet">
+                <input type="radio" name="monstermet" id="wamokey" />
+                <img src="./imagenes/Wamokey.jpg" alt="Wamokey" />
+                <p>Wamokey</p>
+            </label>
+
+            <label class="tarjeta-monstermet">
+                <input type="radio" name="monstermet" id="watitry" />
+                <!-- OJO: aquí tu archivo se llama Watirty.jpg, revisa si es typo -->
+                <img src="./imagenes/Watirty.jpg" alt="Watitry" />
+                <p>Watitry</p>
+            </label>
+
+            <label class="tarjeta-monstermet">
+                <input type="radio" name="monstermet" id="wandy" />
+                <img src="./imagenes/Wandy.jpg" alt="Wandy" />
+                <p>Wandy</p>
+            </label>
+        </div>
+
+        <button id="boton-mascota">Seleccionar mascota</button>
+    </section>
+
+    <!-- SECCIÓN 2: BATALLA/ATAQUES -->
+    <section id="seleccionar-ataque">
+        <h2>Elige tus ataques</h2>
+        <p>Tu Monsterment: <span id="mascota-jugador"></span></p>
+        <p>Enemigo: <span id="mascota-enemigo"></span></p>
+        <p>Vidas jugador: <span id="vidas-jugador">0</span></p>
+        <p>Vidas enemigo: <span id="vidas-enemigo">0</span></p>
+        </div>
+        <div id="contenedorAtaques"></div>
+
+        <section id="mensajes">
+            <p id="resultado"></p>
+
+            <div class="area-ataques">
+                <div>
+                    <h4>Tus ataques</h4>
+                    <div id="ataques-del-jugador"></div>
+                </div>
+
+                <div>
+                    <h4>Ataques del enemigo</h4>
+                    <div id="ataques-del-enemigo"></div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- SECCIÓN 3: MAPA -->
+    <section id="ver-mapa">
+        <canvas id="mapa"></canvas>
+    </section>
+
+    <!-- SECCIÓN 4: REINICIAR -->
+    <section id="Reiniciar">
+        <button id="boton-Reiniciar">Reiniciar Juego</button>
+    </section>
+
+    <script src="MONSTERMENTS.js"></script>
+</body>
+
+</html>
