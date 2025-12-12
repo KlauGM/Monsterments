@@ -2,7 +2,7 @@
 
 Un juego de batalla por turnos en tiempo real donde seleccionas tu Monsterment favorito y compites contra otros jugadores en un mapa interactivo.
 
-![Monsterments Banner](Assets/Mapa.png)
+![Monsterments Banner](Assets/Wandy.jpg)
 
 ## 🌟 Características
 
@@ -134,7 +134,7 @@ monsterments/
 ## 🎨 Capturas de Pantalla
 
 ### Selección de Monster
-![Selección](Assets/Wandy.jpg)
+![Selección](Assets/Mapa.png), 
 
 *Elige tu Monsterment favorito entre 7 opciones únicas*
 
