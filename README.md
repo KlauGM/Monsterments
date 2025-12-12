@@ -134,11 +134,11 @@ monsterments/
 ## 🎨 Capturas de Pantalla
 
 ### Selección de Monster
-![Selección](imagenes/Wandy.jpg)
+![Selección](./imagenes/Wandy.jpg)
 *Elige tu Monsterment favorito entre 7 opciones únicas*
 
 ### Mapa de Juego
-![Mapa](imagenes/Monstermap.png)
+![Mapa](./imagenes/Monstermap.png)
 *Explora el mapa y busca oponentes*
 
 ### Mapa de Batalla
